@@ -11,6 +11,9 @@ import { TournamentItem } from './TournamentItem';
 import store from '../store';
 import Input from './Input';
 import Button from './Button';
+import GridUL from './GridUL';
+import TopPanel from './TopPanel';
+import LoadingText from './LoadingText';
 
 class TournamentsView extends Component {
   constructor(props) {
@@ -29,12 +32,6 @@ class TournamentsView extends Component {
   render() {
     let { tournaments, isError } = this.props;
 
-    const ulStyle = {
-      display: 'grid',
-      gridGap: '4px',
-      gridTemplateColumns: 'auto auto auto'
-    };
-
     let filteredTournaments =
       tournaments.size > 1
         ? tournaments.filter(tourney =>
@@ -49,14 +46,16 @@ class TournamentsView extends Component {
       <ErrorView onClickRetry={e => this.onRetry(e)} />
     ) : tournaments.size > 1 ? (
       <div>
-        <Input
-          value={this.state.search}
-          onChange={this.updateSearch.bind(this)}
-        ></Input>
-        <Button onClick={this.createATournament.bind(this)}>
-          Create Tournament
-        </Button>
-        <ul style={ulStyle}>
+        <TopPanel>
+          <Input
+            value={this.state.search}
+            onChange={this.updateSearch.bind(this)}
+          ></Input>
+          <Button onClick={this.createATournament.bind(this)}>
+            Create Tournament
+          </Button>
+        </TopPanel>
+        <GridUL>
           {filteredTournaments.map(tournament => (
             <TournamentItem
               onClickEdit={e => this.onEdit(tournament, e)}
@@ -65,10 +64,12 @@ class TournamentsView extends Component {
               key={tournament.get('id')}
             />
           ))}
-        </ul>
+        </GridUL>
       </div>
     ) : (
-      <div>loading tournaments...</div>
+      <div style={{ width: '100%' }}>
+        <LoadingText>loading tournaments...</LoadingText>
+      </div>
     );
   }
 
@@ -86,7 +87,8 @@ class TournamentsView extends Component {
       'New Tournament Name:',
       tournamentData.get('name')
     );
-    this.props.dispatch(editTournament(tournamentData.get('id'), editPrompt));
+    if (editPrompt)
+      this.props.dispatch(editTournament(tournamentData.get('id'), editPrompt));
   }
 
   onDelete(tournamentData) {

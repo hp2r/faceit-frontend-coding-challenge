@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import Tile from './Tile';
 import Button from './Button';
 import H6 from './H6';
-import TileButtons from './TileButtons';
+import TileButton from './TileButton';
 import { pad } from '../utils/pad';
+import TileButtonsHolder from './TileButtonsHolder';
+import TournamentTitle from './TournamentTitle';
 
 export const TournamentItem = ({
   tournamentData,
@@ -22,9 +24,12 @@ export const TournamentItem = ({
 
   return (
     <Tile>
-      <H6>{tournamentData.get('name')}</H6>
-      <div className="itemList">
-        <ul>
+      <TournamentTitle>{tournamentData.get('name')}</TournamentTitle>
+      <div
+        className="itemList"
+        style={{ display: 'flex', justifyContent: 'flex-start' }}
+      >
+        <ul style={{ listStyleType: 'none', paddingLeft: '15px' }}>
           <li>Organizor: {tournamentData.get('organizer')}</li>
           <li>Game: {tournamentData.get('game')}</li>
           <li>
@@ -47,10 +52,10 @@ export const TournamentItem = ({
           </li>
         </ul>
       </div>
-      <TileButtons>
-        <Button onClick={onClickEdit}>Edit</Button>
-        <Button onClick={onClickDelete}>Delete</Button>
-      </TileButtons>
+      <TileButtonsHolder>
+        <TileButton onClick={onClickEdit}>Edit</TileButton>
+        <TileButton onClick={onClickDelete}>Delete</TileButton>
+      </TileButtonsHolder>
     </Tile>
   );
 };
