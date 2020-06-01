@@ -5,10 +5,9 @@ import {
   editTournament,
   deleteTournament,
   createTournament
-} from '../store';
+} from '../middlewares/TournamentsMiddleware';
 import { ErrorView } from './ErrorView';
 import { TournamentItem } from './TournamentItem';
-import store from '../store';
 import Input from './Input';
 import Button from './Button';
 import GridUL from './GridUL';

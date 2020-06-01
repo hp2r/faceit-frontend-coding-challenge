@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import theme from '../theme';
 
 const TileButtonsHolder = styled.div`
   display: flex;

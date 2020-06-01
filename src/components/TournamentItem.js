@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Tile from './Tile';
-import Button from './Button';
-import H6 from './H6';
 import TileButton from './TileButton';
 import { pad } from '../utils/pad';
 import TileButtonsHolder from './TileButtonsHolder';
@@ -12,7 +10,7 @@ export const TournamentItem = ({
   onClickEdit,
   onClickDelete
 }) => {
-  let formattedDate, day, month, year, time, hours, minutes, seconds;
+  let formattedDate, day, month, year, hours, minutes, seconds;
   let startDate = new Date(tournamentData.get('startDate'));
 
   day = pad(startDate.getDay());
@@ -21,6 +19,19 @@ export const TournamentItem = ({
   hours = pad(startDate.getHours());
   minutes = pad(startDate.getMinutes());
   seconds = pad(startDate.getSeconds());
+  formattedDate =
+    ' ' +
+    day +
+    '/' +
+    month +
+    '/' +
+    year +
+    ' ' +
+    hours +
+    ':' +
+    minutes +
+    ':' +
+    seconds;
 
   return (
     <Tile>
@@ -36,20 +47,7 @@ export const TournamentItem = ({
             Participants: {tournamentData.get('participants').get('current')} /{' '}
             {tournamentData.get('participants').get('max')}
           </li>
-          <li>
-            Start:{' '}
-            {day +
-              '/' +
-              month +
-              '/' +
-              year +
-              ' ' +
-              hours +
-              ':' +
-              minutes +
-              ':' +
-              seconds}
-          </li>
+          <li>Start:{formattedDate}</li>
         </ul>
       </div>
       <TileButtonsHolder>

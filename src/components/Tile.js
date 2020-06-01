@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import theme from '../theme';
 
 const Tile = styled.div`
   width: 290px;

@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { connect } from 'react-redux';
 import GlobalStyle from './GlobalStyle';
 import store from './store';
 import Container from './components/Container';
 import H4 from './components/H4';
-import Input from './components/Input';
-import Button from './components/Button';
 import TournamentsView from './components/TournamentsView';
 
 const App = () => {
