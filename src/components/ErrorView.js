@@ -1,9 +1,11 @@
-import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import {fetchTournaments} from '../store';
+import Button from './Button';
 
-export const ErrorView = () => {
+export const ErrorView = ({ onClickRetry }) => {
   return (
-    <div>Something went wrong. Add retry button here</div>
+    <div>
+      Something went wrong.
+      <Button onClick={onClickRetry}>RETRY</Button>
+    </div>
   );
-}
+};
